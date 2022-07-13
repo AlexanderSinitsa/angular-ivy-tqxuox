@@ -1,0 +1,33 @@
+<div inView (appearedOnScreen)="onAppearedOnScreen()">
+  <!-- Empty block with the same height as the loading element to reserve space for smooth scrolling -->
+  <!-- Actually we can skip this block and start from Loading block but perhaps It can be useful -->
+  <div
+    *ngIf="!isBoxAppearedInView"
+    [style.width.px]="reservedWidth"
+    [style.height.px]="reservedHeight"
+  ></div>
+
+  <!-- Loading block -->
+  <div *ngIf="isBoxAppearedInView && !isContentReady">
+    <ng-template
+      *ngIf="loadingTemplateRef; else defaultLoadingTemplate"
+      [ngTemplateOutlet]="loadingTemplateRef"
+    ></ng-template>
+
+    <ng-template #defaultLoadingTemplate>
+      <div *ngIf="!loadingTemplateRef" class="main-item">
+        <div class="animated-background">
+          <div class="background-masker"></div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- Ready content block -->
+  <ng-template
+    *ngIf="isContentReady"
+    [ngTemplateOutlet]="boxTemplateRef"
+    [ngTemplateOutletContext]="{ box }"
+  ></ng-template>
+
+</div>

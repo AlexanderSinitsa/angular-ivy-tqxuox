@@ -19,7 +19,7 @@ export class InViewService {
             entries.forEach((entry) => this.triggerSubject.next(entry));
           }
         },
-        {}
+        { threshold: [0] }
       )
     }
 

@@ -5,11 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { InViewDirective } from './directives/in-view.directive';
 import { BoxComponent } from './components/box/box.component';
-import { LazyScrollComponent } from './components/lazy-scroll/lazy-scroll.component';
+import { BoxLoadingComponent } from './components/box-loading/box-loading.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, BoxComponent, LazyScrollComponent, InViewDirective ],
+  declarations: [ AppComponent, BoxComponent, BoxLoadingComponent, InViewDirective ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

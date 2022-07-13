@@ -1,11 +1,3 @@
 p {
   font-family: Lato;
 }
-
-.box-hidden {
-  visibility: hidden;
-}
-
-.box-loading {
-  opacity: 0.2;
-}

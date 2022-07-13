@@ -1,16 +1,42 @@
-<my-lazy-scroll
-  [items]="boxes"
-  [itemsVisibilityState]="boxesVisibilityState"
-  [itemHeight]="200"
-  (scrolledToItem)="fetchBoxContent($event)"
->
-  <ng-template #templateRef let-box="item" let-i="index">
+<!-- Single box -->
+<my-box-loading
+  [reservedHeight]="200"
+  [isContentReady]="isContentReady[100]"
+  (fetchRequired)="fetchBoxContent(100)">
+  >
+  <ng-template #boxTemplateRef>
     <box
-      class="box"
-      [text]="box?.text || 'TODO'"
-      [id]="i"
+      class="header-item"
+      text="Header content"
+      [id]="100"
     ></box>
   </ng-template>
 
-  <!-- here can be added a custom template for an empty box -->
-</my-lazy-scroll>
+  <!-- Custom loading template -->
+  <ng-template #loadingTemplateRef>
+    <div class="header-loading">
+      <div class="animated-background">
+        <div class="background-masker"></div>
+      </div>
+    </div>
+  </ng-template>
+</my-box-loading>
+
+
+
+<!-- Multiple boxes -->
+<my-box-loading
+  *ngFor="let box of boxes"
+  [box]="box"
+  [reservedHeight]="200"
+  [isContentReady]="isContentReady[box?.id]"
+  (fetchRequired)="fetchBoxContent(box?.id)">
+>
+  <ng-template #boxTemplateRef let-box="box">
+    <box
+      class="box"
+      [text]="box?.text || 'TODO'"
+      [id]="box?.id"
+    ></box>
+  </ng-template>
+</my-box-loading>
