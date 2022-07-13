@@ -1,0 +1,26 @@
+<div
+  *ngFor="let item of items; let i=index;"
+  inView
+  (inViewStatusChanged)="onInViewStatusChanged(i)"
+>
+  <!-- Empty block with the same height as the loaded element for smooth scrolling -->
+  <div
+    *ngIf="itemsVisibilityState[i] === BoxStateEnum.Empty"
+    [style.height.px]="itemHeight"
+  ></div>
+
+  <!-- Loading block -->
+  <div
+    *ngIf="itemsVisibilityState[i] === BoxStateEnum.Loading"
+    [style.height.px]="itemHeight"
+  >
+    ... loading ...
+  </div>
+
+  <!-- Item content -->
+  <ng-template
+    *ngIf="itemsVisibilityState[i] === BoxStateEnum.Ready"
+    [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{ item, index: i }"
+  ></ng-template>
+
+</div>

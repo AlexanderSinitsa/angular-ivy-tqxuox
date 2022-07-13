@@ -1,0 +1,16 @@
+<my-lazy-scroll
+  [items]="boxes"
+  [itemsVisibilityState]="boxesVisibilityState"
+  [itemHeight]="200"
+  (scrolledToItem)="fetchBoxContent($event)"
+>
+  <ng-template #templateRef let-box="item" let-i="index">
+    <box
+      class="box"
+      [text]="box?.text || 'TODO'"
+      [id]="i"
+    ></box>
+  </ng-template>
+
+  <!-- here can be added a custom template for an empty box -->
+</my-lazy-scroll>

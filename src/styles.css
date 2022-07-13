@@ -1,0 +1,12 @@
+/* Add application styles & imports to this file! */
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  margin: 48px;
+  border-radius: 6px;
+}
